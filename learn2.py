@@ -3,8 +3,6 @@ from tkinter import colorchooser
 from math import floor
 
 
-
-
 class AutoComplete:
 
 	numTab = 0
@@ -17,20 +15,21 @@ class AutoComplete:
 		self.symbols = {'{': '}', '[':']', '(':')'}
 
 
-	def CompleteSymbol(self, textBox, c):
-		textBox.insert(END, self.symbols[c])
+	def CompleteSymbol(self, c):
+		self.textBox.insert(END, self.symbols[c])
 
 
 	def DeleteLast(self, textBox):
 		textBox.delete(END)
 
+	def keyStroke(self, e):
+		print(e.char)
+		if e.char in self.symbols:
+			self.CompleteSymbol(e.char)
 
-class Editor(AutoComplete):
-
-	pass
 
 
-class GuiAlgoMaster5000:
+class GuiAlgoMaster5000(AutoComplete):
 
 	ide = Tk()
 	textBox = None
@@ -42,6 +41,7 @@ class GuiAlgoMaster5000:
 
 
 	def __init__(self, title = "Your title"):
+
 		self.ide.title(title)
 		self.editor = PanedWindow()
 		
@@ -65,13 +65,17 @@ class GuiAlgoMaster5000:
 	    # variable to store hexadecimal code of color 
 	    color_code = colorchooser.askcolor(title ="Choose color")
 	    if color_code[0]:  
+
+	    	#setting Background colour
 		    self.textBox['bg'] = color_code[1]
-		    s = "#" + "".join([hex(255-int(i))[2:].zfill(2) for i in color_code[0]])
-		    self.textBox['fg'] = s
+		    #inverting the ForeGround Color based on Background 
+		    fg = "#" + "".join([hex(255-int(i))[2:].zfill(2) for i in color_code[0]])
+		    #setting foreground
+		    self.textBox['fg'] = fg
 	    
 
 	def main(self):
-		self.ide.bind
+		self.ide.bind("<KeyPress>", self.keyStroke)
 		self.ide.mainloop()
 
 

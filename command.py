@@ -6,11 +6,7 @@ sym = {'{': '}',
 		'numofTab': 0,
 		'last': "1"}
 
-def choose_color(): 
-  
-    # variable to store hexadecimal code of color 
-    color_code = colorchooser.askcolor(title ="Choose color")  
-    print(color_code)
+
 
 def saveText(editor):
 	StringResult = editor.get(1.0, 'end-1c')
