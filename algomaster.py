@@ -17,20 +17,20 @@ class AutoComplete:
 		self.symbols = {'{': '}', '[':']', '(':')'}
 
 
-	def CompleteSymbol(self, textBox, c):
-		textBox.insert(END, self.symbols[c])
+	def completeSymbol(self, c):
+		self.textBox.insert(END, self.symbols[c])
 
 
-	def DeleteLast(self, textBox):
+	def deleteLast(self, textBox):
 		textBox.delete(END)
 
+	def keyStroke(self, e):
+		if e.char in self.symbols:
+			self.completeSymbol(e.char)
 
-class Editor(AutoComplete):
-
-	pass
 
 
-class GuiAlgoMaster5000:
+class GuiAlgoMaster5000(AutoComplete):
 
 	ide = Tk()
 	textBox = None
@@ -71,8 +71,8 @@ class GuiAlgoMaster5000:
 	    
 
 	def main(self):
-		self.ide.bind
+		self.ide.bind("<KeyPress>", self.keyStroke)
 		self.ide.mainloop()
 
 
-GuiAlgoMaster5000().main()
+GuiAlgoMaster5000("AlgoMaster5000").main()
