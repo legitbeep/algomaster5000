@@ -10,7 +10,7 @@ sym = {'{': '}',
 
 def saveText(editor):
 	StringResult = editor.get(1.0, 'end-1c')
-	print(StringResult)
+	print(StringResult.split(" "))
 
 
 def completeSymbols(editor, c):
