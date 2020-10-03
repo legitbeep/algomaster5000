@@ -18,7 +18,6 @@ class AutoComplete:
 
 	def completeSymbol(self, c):
 		
-		
 		self.textBox.insert(END, self.symbols[c])
 		self.textBox.mark_set("insert", "{}.{}".format(self.line,self.char[self.line]))
 		self.char[self.line] += 1
@@ -132,3 +131,5 @@ class GuiAlgoMaster5000(AutoComplete):
 
 
 GuiAlgoMaster5000("AlgoMaster5000").main()
+
+
